@@ -1,0 +1,16 @@
+type BondSlotInfo @entity {
+  "contractAddress + slot"
+  id: ID!
+  msgSender: String!
+  contractAddress: String!
+  slot: String!
+  valueDate: Int!
+  maturity: Int!
+  lastUpdated: Int!
+}
+
+type NewDelegateAddress @entity {
+  "contractAddress"
+  id: ID!
+  lastUpdated: Int
+}

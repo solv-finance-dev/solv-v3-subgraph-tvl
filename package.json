@@ -1,0 +1,17 @@
+{
+  "name": "solv-v3-subgraph-tvl",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "graph build",
+    
+    "payable-delegate-codegen": "graph codegen payableDelegateYaml/subgraph_bsc_mainnet_defillama.yaml --output-dir src/types/payableDelegate",
+    "payable-delegate-deploy-bsc-mainnet-defillama": "graph codegen payableDelegateYaml/subgraph_bsc_mainnet_defillama.yaml --output-dir src/types/payableDelegate && graph deploy --debug --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ --access-token {{token}} slov-payable/solv-v3-earn-factory payableDelegateYaml/subgraph_bsc_mainnet_defillama.yaml",
+    "payable-delegate-deploy-eth-mainnet-defillama": "graph codegen payableDelegateYaml/subgraph_eth_mainnet_defillama.yaml --output-dir src/types/payableDelegate && graph deploy --debug --node https://api.studio.thegraph.com/deploy/  --access-token {{token}} solv-payable-factory-prod payableDelegateYaml/subgraph_eth_mainnet_defillama.yaml",
+    "payable-delegate-deploy-arbitrum-one-defillama": "graph codegen payableDelegateYaml/subgraph_arbitrum_one_defillama.yaml --output-dir src/types/payableDelegate && graph deploy --debug --node https://api.studio.thegraph.com/deploy/  --access-token {{token}} solv-payable-factory-arbitrum payableDelegateYaml/subgraph_arbitrum_one_defillama.yaml"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "^0.23.2",
+    "@graphprotocol/graph-ts": "^0.23.1",
+    "assemblyscript-json": "^1.1.0"
+  }
+}

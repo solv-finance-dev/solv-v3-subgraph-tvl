@@ -1,0 +1,49 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: EarnFactory
+    network: arbitrum-one
+    source:
+      address: "0x5531f96bb9e9559ae9880cC0109e06eF477AeF8e"
+      abi: EarnBeaconFactory
+      startBlock: 84104000
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Factory
+      abis:
+        - name: EarnBeaconFactory
+          file: ./abis/EarnBeaconFactory.json
+      eventHandlers:
+        - event: NewDelegateBeaconProxy(indexed bytes32,indexed bytes32,address)
+          handler: handleNewDelegateBeaconProxy
+      file: ../src/mappings/payableDelegate/earnBeaconFactory.ts
+templates:
+  - kind: ethereum/contract
+    name: Payable
+    network: arbitrum-one
+    source:
+      abi: PayableDelegate
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Payable
+      abis:
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: ERC20SymbolBytes
+          file: ./abis/ERC20SymbolBytes.json
+        - name: ERC20NameBytes
+          file: ./abis/ERC20NameBytes.json
+        - name: PayableDelegate
+          file: ./abis/PayableDelegate.json
+      eventHandlers:
+        - event: CreateSlot(indexed uint256,indexed address,bytes)
+          handler: handleCreateSlot
+      file: ../src/mappings/payableDelegate/payableDelegate.ts
