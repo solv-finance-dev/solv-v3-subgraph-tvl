@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: EarnFactory
-    network: arbitrum-one
+    network: MerlinMainnet
     source:
-      address: "0x5531f96bb9e9559ae9880cC0109e06eF477AeF8e"
+      address: "0x3B2Ad06251FD1007F36cf960F4851093c4bbdd63"
       abi: EarnBeaconFactory
-      startBlock: 84104000
+      startBlock: 4626500
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -26,11 +26,11 @@ dataSources:
       file: ../src/mappings/payableDelegate/earnBeaconFactory.ts
   - kind: ethereum/contract
     name: OpenFundMarket
-    network: arbitrum-one
+    network: MerlinMainnet
     source:
-      address: "0x629aD7Bc14726e9cEA4FCb3A7b363D237bB5dBE8"
+      address: "0x59Cf3db95bdF5C545877871c3863c9DBe6b0b7cf"
       abi: OpenFundMarket
-      startBlock: 113055000
+      startBlock: 4625200
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -55,7 +55,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: Payable
-    network: arbitrum-one
+    network: MerlinMainnet
     source:
       abi: PayableDelegate
     mapping:

@@ -1,8 +1,9 @@
 import {
     BondSlotInfo,
     NewDelegateAddress,
+    PoolOrderInfo,
 } from '../../types/payableDelegate/schema'
-import { BigInt, log } from '@graphprotocol/graph-ts'
+import { BigInt, Bytes, log } from '@graphprotocol/graph-ts'
 
 export let zeroBI = BigInt.fromI32(0)
 // 记录SlotInfo
@@ -23,6 +24,40 @@ export function createBondSlotInfo(
     bondSlotInfo.maturity = maturity;
 
     return bondSlotInfo as BondSlotInfo;
+}
+
+// 记录PoolOrderInfo
+export function createPoolOrderInfo(
+    marketContractAddress: string,
+    contractAddress: string,
+    navOracle: string,
+    poolId: Bytes,
+    vault: string,
+    openFundShareSlot: BigInt,
+    fundraisingStartTime: BigInt,
+    fundraisingEndTime: BigInt,
+): PoolOrderInfo {
+    let poolOrderInfoId = marketContractAddress.concat('-').concat(poolId.toHexString());
+    let poolOrderInfo = new PoolOrderInfo(poolOrderInfoId);
+    poolOrderInfo.marketContractAddress = marketContractAddress;
+    poolOrderInfo.contractAddress = contractAddress;
+    poolOrderInfo.navOracle = navOracle;
+    poolOrderInfo.poolId = poolId;
+    poolOrderInfo.vault = vault;
+    poolOrderInfo.openFundShareSlot = openFundShareSlot;
+    poolOrderInfo.fundraisingStartTime = fundraisingStartTime;
+    poolOrderInfo.fundraisingEndTime = fundraisingEndTime;
+
+    return poolOrderInfo as PoolOrderInfo;
+}
+
+export function usePoolOrderInfo(
+    marketContractAddress: string,
+    poolId: string
+): PoolOrderInfo {
+    let poolOrderInfoId = marketContractAddress.concat('-').concat(poolId);
+    let poolOrderInfo = PoolOrderInfo.load(poolOrderInfoId)!
+    return poolOrderInfo as PoolOrderInfo;
 }
 
 // eran new

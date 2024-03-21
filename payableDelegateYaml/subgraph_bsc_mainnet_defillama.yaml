@@ -38,6 +38,8 @@ dataSources:
       abis:
         - name: EarnBeaconFactory
           file: ./abis/EarnBeaconFactory.json
+        - name: PayableDelegate
+          file: ./abis/PayableDelegate.json
       eventHandlers:
         - event: NewDelegateBeaconProxy(indexed bytes32,indexed bytes32,address)
           handler: handleNewDelegateBeaconProxy

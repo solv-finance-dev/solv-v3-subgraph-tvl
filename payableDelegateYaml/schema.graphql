@@ -9,6 +9,20 @@ type BondSlotInfo @entity {
   lastUpdated: Int!
 }
 
+type PoolOrderInfo @entity {
+  "marketContractAddress + poolId"
+  id: ID!
+  marketContractAddress: String!
+  contractAddress: String!
+  navOracle: String!
+  poolId: Bytes!
+  vault: String!
+  openFundShareSlot: BigInt!
+  fundraisingStartTime: BigInt!
+  fundraisingEndTime: BigInt!
+  lastUpdated: Int!
+}
+
 type NewDelegateAddress @entity {
   "contractAddress"
   id: ID!
